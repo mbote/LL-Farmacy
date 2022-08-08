@@ -1,0 +1,30 @@
+@model farmacia.Models.TipoFuncionario
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container" id="linkGen" style="margin-bottom:20px; margin-top:70px;">
+    <p style="color:#212529; font-size: 20px;"><a asp-action="Index" style="text-decoration: none;color:#212529">Tipo
+            funcionário/</a>editar</p>
+</div>
+<div class="container pt-3 pb-5" id="headCliente" style="box-shadow: 1px 5px 15px #888888; margin-top:0px">
+    <h5>Editar tipo funcionário</h5>
+    <hr />
+    <form asp-action="Edit">
+        <div class="row">
+            <div class="col-md-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="TipoFuncionarioId" />
+                <div class="mb-3">
+                    <label asp-for="tipo" class="form-label">Tipo</label>
+                    <input asp-for="tipo" class="form-control" />
+                    <span asp-validation-for="tipo" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3" style="float:right;">
+            <input type="submit" value="Editar" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+        </div>
+    </form>
+</div>

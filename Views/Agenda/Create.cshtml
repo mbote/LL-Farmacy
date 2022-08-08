@@ -1,0 +1,88 @@
+@model dynamic;
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container" id="linkGen" style="margin-bottom:20px; margin-top:70px;">
+    <p style="color:#212529; font-size: 20px;"><a asp-action="Index"
+            style="text-decoration: none;color:#212529">Agenda/</a>registar</p>
+</div>
+<div class="container pt-3 pb-2" id="headCliente" style="box-shadow: 1px 5px 15px #888888; margin-top:0px">
+    <h5>Nova agenda</h5>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Funcionário</label>
+                    <select for="tipo" class="form-control form-select form-control-lg" name="idFuncionario" id="idFuncionario"
+                        required>
+                        <option value=""></option>
+                        @foreach (var item in ViewBag.funcionarios)
+                        {
+                            <option value="@item.idFuncionario">@item.nome</option>
+                        }
+                    </select>
+                    <span validation-for="tipo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Serviços</label>
+                    <select for="tipo" class="form-control form-select form-control-lg" name="idServico" id="idServico" required>
+                        <option value=""></option>
+                    </select>
+                    <span validation-for="tipo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Horarío</label>
+                    <select for="tipo" class="form-control form-select form-control-lg" name="idHorario" required>
+                        <option value=""></option>
+                        @foreach (var item in ViewBag.horarios)
+                        {
+                            <option value="@item.HorarioId">@item.dia - @item.hora</option>
+                        }
+                    </select>
+                    <span validation-for="tipo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3" style="float:right;">
+                    <input type="submit" value="Criar" class="btn btn-success btn-lg" />
+                    <a asp-action="Index" class="btn btn-secondary btn-lg">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+@section Scripts
+{
+<script type="text/javascript">
+    $("#idFuncionario").on('change', function () {
+        $.ajax({
+            type: "GET",
+            url: '/Agenda/getServicoFuncionario/' + $("#idFuncionario").val(),
+            data: '{id:' + $("#idFuncionario").val() + '}',
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $('#idServico').empty();
+                $.each(data, function (i, item) {
+                    var rows = " <option value=" + item.idServico + ">" + item.servico + "</option>";
+                    $('#idServico').append(rows);
+                });
+            },
+            error: function () {
+                alert("Error while inserting data");
+            }
+        });
+        return false;
+    });
+</script>
+}

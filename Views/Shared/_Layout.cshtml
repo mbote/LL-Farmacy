@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - farmacia</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/autocomplete.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/farmacia.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <div class="text-left">
+            <img src="~/images/logo.png" alt="logo" style="width: 130px; height:60px; margin-top:20px; margin-left:20px">
+        </div>
+        <nav class="nav justify-content-end" style="margin-top:-30px">
+
+            @* <div class="container-fluid">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                </div>
+                </div> *@
+
+
+            <ul class="nav justify-content-end" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="home-color" asp-area="" asp-controller="Home"
+                        asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="TipoServico" asp-action="Index">Gerir
+                        serviços</a>
+                    <div class="dropdown-content">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Servico"
+                            asp-action="Index">serviço</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="TipoServico" asp-action="Index">tipo
+                            serviço</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="ServicoFuncionario"
+                            asp-action="Index">Serviços funcionário</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="TipoServico" asp-action="Index">Gerir
+                        funcionários</a>
+                    <div class="dropdown-content">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Funcionario"
+                            asp-action="Index">funcionário</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="TipoFuncionario"
+                            asp-action="Index">tipo funcionário</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="TipoServico" asp-action="Index">Tools</a>
+                    <div class="dropdown-content">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Agenda" asp-action="Index">Agenda</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Horario"
+                            asp-action="Index">Horario</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Marcacao"
+                            asp-action="Index">Marcação</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <img src="~/images/socias.png" alt="logo" style="width: 110px; height:45px; margin-left:0;">
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container rodpCopy">
+            &copy; 2022 - farmacia - <a>Lira Link</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

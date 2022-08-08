@@ -1,0 +1,35 @@
+@model farmacia.Models.Horario
+
+@{
+    ViewData["Title"] = "Criar horario";
+}
+
+<div class="container" id="linkGen" style="margin-bottom:20px; margin-top:70px;">
+    <p style="color:#212529; font-size: 20px;"><a asp-action="Index"
+            style="text-decoration: none;color:#212529">Horário/</a>registar</p>
+</div>
+<div class="container pt-3 pb-1" id="headCliente" style="box-shadow: 1px 5px 15px #888888; margin-top:0px">
+    <h5>Criar horario</h5>
+    <hr />
+    <form asp-action="CriarHorario">
+        <div class="row">
+            <div class="col-md-12">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="dia" class="form-label">Dia</label>
+                    <input type="date" asp-for="dia" class="form-control form-control-lg" />
+                    <span asp-validation-for="dia" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="hora" class="form-label">Hora</label>
+                    <input type="time" asp-for="hora" class="form-control form-control-lg" />
+                    <span asp-validation-for="hora" class="text-danger"></span>
+                </div>
+                <div class="mb-3" style="margin-top: 10px; float:right;">
+                    <input type="submit" value="Criar" class="btn btn-success">
+                    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

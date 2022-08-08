@@ -1,0 +1,36 @@
+@model farmacia.Models.Horario
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container" id="linkGen" style="margin-bottom:20px; margin-top:70px;">
+    <p style="color:#212529; font-size: 20px;"><a asp-action="Index"
+            style="text-decoration: none;color:#212529">Horário/</a>remover</p>
+</div>
+
+<div class="container pt-3" id="headCliente" style="box-shadow: 1px 5px 15px #888888; margin-top:0px">
+    <h5>Remover horário</h5>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.dia)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.dia)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.hora)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.hora)
+            </dd>
+        </dl>
+        <form asp-action="Delete" style="float:right;">
+            <input type="hidden" asp-for="HorarioId" />
+            <input type="submit" value="Remover" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+        </form>
+    </div><br><br>
+</div>

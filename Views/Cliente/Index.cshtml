@@ -1,0 +1,169 @@
+@model IEnumerable<farmacia.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+    var result = @TempData["msg"];
+}
+
+@if (result == null)
+{
+    <script>
+        $(function () {
+            $.notify({
+                title: "<strong>Message:</strong> ",
+                message: "ddddddddddd"
+            });
+        });
+    </script>
+    // ViewBag.Msg = null;
+}
+
+@if (@result != null && @result.Equals("delete"))
+{
+    <div class="container" id="notificacao" style="max-width:520px; float:right; margin-right:200px; margin-top:-20px;">
+        <h5 class="alert alert-danger"> Não podes remover o cliente!</h5>
+    </div>
+}
+
+@if (@result != null && @result.Equals("delete1"))
+{
+    <div class="container" id="notificacao" style="max-width:520px; float:right; margin-right:200px; margin-top:-20px;">
+        <h5 class="alert alert-danger"> Cliente removido com sucesso!</h5>
+    </div>
+}
+
+@if (@result != null && @result.Equals("add"))
+{
+    <div class="container" id="notificacao" style="max-width:520px; float:right; margin-right:200px; margin-top:-20px;">
+        <h5 class="alert alert-success"> Cliente adicionados com sucesso!</h5>
+    </div>
+}
+
+@if (@result != null && @result.Equals("edit"))
+{
+    <div class="container" id="notificacao" style="max-width:520px; float:right; margin-right:200px; margin-top:-20px;">
+        <h5 class="alert alert-success"> Dados do cliente actualizado com sucesso!</h5>
+    </div>
+}
+
+<div class="container" id="linkGen" style="margin-bottom:-70px; margin-top:70px; margin-left:190px">
+    <p style="color:#212529; font-size: 20px;">Listar clientes</p>
+</div>
+
+<div class="container-md pt-3 shadow-lg" id="headCliente" style="max-width:1520px; ">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Novo
+        paciente</button>
+    <table class="table">
+        <thead class="table-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.pessoa.nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pessoa.sexo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pessoa.bi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pessoa.telefone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pessoa.email)
+                </th>
+                <th style="width:200px;">Operações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pessoa.nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pessoa.sexo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pessoa.bi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pessoa.telefone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pessoa.email)
+                    </td>
+                    <td>
+                        @* <a asp-action="Edit" asp-route-id="@item.pessoa.PessoaId" class="btn btn-success">Editar</a> |
+                            <a asp-action="Delete" asp-route-id="@item.pessoa.PessoaId" class="btn btn-danger">Remover</a> *@
+
+                        <div class="btn-group dropup">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                                Seleciona
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a asp-action="Edit" asp-route-id="@item.pessoa.PessoaId"
+                                    class="dropdown-item">Editar</a></li>
+                                <li><a asp-action="Delete" asp-route-id="@item.pessoa.PessoaId"
+                                    class="dropdown-item">Remover</a></li>
+                            </ul>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #198754; color: white">
+                    <h5 class="modal-title" id="exampleModalLabel">Registar paciente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label for="nome" class="form-label" style="font-family: inherit;">Nome completo</label>
+                            <input for="nome" class="form-control form-control-lg" type="text" id="nome" value=""
+                                name="nome" required />
+                            <span validation-for="nome" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sexo" class="form-label">Genéro</label>
+                            <input for="sexo" class="form-control form-control-lg" type="text" id="sexo" value=""
+                                name="sexo" required />
+                            <span validation-for="sexo" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bi" class="form-label">B.I</label>
+                            <input for="bi" class="form-control form-control-lg" type="text" id="bi" value="" name="bi"
+                                required />
+                            <span validation-for="bi" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input type="number" class="form-control form-control-lg" id="telefone" value=""
+                                name="telefone" required />
+                            <span validation-for="telefone" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input for="email" type="email" class="form-control form-control-lg" id="email" value=""
+                                name="email" placeholder="name@example.com" required />
+                            <span validation-for="email" class="text-danger"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success">Registar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

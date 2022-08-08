@@ -1,0 +1,103 @@
+@model IEnumerable<farmacia.Models.TipoFuncionario>
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container" id="linkGen" style="margin-bottom:20px; margin-top:70px;">
+    <p style="color:#212529; font-size: 20px;"><a asp-action="Index"
+            style="text-decoration: none;color:#212529">Funcionário/</a>registar</p>
+</div>
+
+<div class="container pt-3 pb-5" id="headCliente" style="box-shadow: 1px 5px 15px #888888; margin-top:0px">
+    <h5>Novo funcionário</h5>
+    <hr />
+    <form method="post" action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome completo</label>
+                    <input for="nome" class="form-control  form-control-lg" type="text" id="nome" value="" name="nome"
+                        required />
+                    <span validation-for="nome" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="sexo" class="form-label">Genéro</label>
+                    <input for="sexo" class="form-control  form-control-lg" type="text" id="sexo" value="" name="sexo"
+                        required />
+                    <span validation-for="sexo" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="bi" class="form-label">B.I</label>
+                    <input for="bi" class="form-control form-control-lg" type="text" id="bi" value="" name="bi" required />
+                    <span validation-for="bi" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Tipo funcionário</label>
+                    <select for="tipo" class="form-control form-control-lg form-select" name="tipoFuncionario" required>
+                        <option value=""></option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.TipoFuncionarioId">@item.tipo</option>
+                        }
+                    </select>
+                    <span validation-for="tipo" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <input type="number" class="form-control  form-control-lg" id="telefone" value="" name="telefone"
+                        required />
+                    <span validation-for="telefone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input for="email" type="email" class="form-control  form-control-lg" id="email" value=""
+                        name="email" placeholder="name@example.com" required />
+                    <span validation-for="email" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="servico" class="form-label">Nº de ordem</label>
+                    <input for="ordem" type="number" class="form-control  form-control-lg" id="ordem" value=""
+                        name="ordem" required />
+                    <span validation-for="servico" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="servico" class="form-label">NIF</label>
+                    <input for="nif" type="text" class="form-control  form-control-lg" id="nif" value="" name="nif"
+                        required />
+                    <span validation-for="servico" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="float:right;">
+            <div class="mb-3">
+                <input type="submit" value="Criar" class="btn btn-success btn-lg" />
+                <a asp-action="Index" class="btn btn-secondary btn-lg">Voltar</a>
+            </div>
+        </div>
+        <br>
+    </form>
+</div>

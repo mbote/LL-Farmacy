@@ -1,0 +1,111 @@
+@model dynamic;
+
+@{
+    ViewData["Title"] = "Create";
+    var nome = ViewBag.funcionarios[0].dados.nome;
+    var sexo = ViewBag.funcionarios[0].dados.sexo;
+    var bi = ViewBag.funcionarios[0].dados.bi;
+    var telefone = ViewBag.funcionarios[0].dados.telefone;
+    var email = ViewBag.funcionarios[0].dados.email;
+    var tipoFuncionario = ViewBag.funcionarios[0].dados.tipo;
+    var nif = ViewBag.funcionarios[0].dados.nif;
+    var ordem = ViewBag.funcionarios[0].dados.numeroOrdem;
+    var pessoaId = ViewBag.funcionarios[0].dados.PessoaId;
+}
+
+<div class="container" id="linkGen" style="margin-bottom:20px; margin-top:70px;">
+    <p style="color:#212529; font-size: 20px;"><a asp-action="Index"
+            style="text-decoration: none;color:#212529">Funcionário/</a>editar</p>
+</div>
+
+<div class="container pt-3 pb-3" id="headCliente" style="box-shadow: 1px 5px 15px #888888; margin-top:0px">
+    <h5>Editar funcionário</h5>
+    <hr />
+    <form method="post" action="Edit">
+        <div class="row">
+            <div class="col">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="@pessoaId" name="pessoaId" />
+                <div class="mb-3">
+                    <label asp-for="@nome" class="form-label">Nome completo</label>
+                    <input asp-for="@nome" class="form-control form-control-lg" type="text" id="nome" name="nome"
+                        required />
+                    <span asp-validation-for="@nome" class="text-danger"></span>
+                </div>
+            </div> 
+            <div class="col">
+                <div class="mb-3">
+                    <label for="sexo" class="form-label">Sexo</label>
+                    <input asp-for="@sexo" class="form-control form-control-lg" id="sexo" name="sexo" required />
+                    <span validation-for="sexo" class="text-danger"></span>
+                </div>
+           </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="bi" class="form-label">B.I</label>
+                    <input asp-for="@bi" class="form-control form-control-lg" id="bi" name="bi" required />
+                    <span validation-for="bi" class="text-danger"></span>
+                </div>
+            </div> 
+            <div class="col">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Tipo funcionário</label>
+                    <select for="tipo" class="form-control form-select form-control-lg" name="tipoFuncionario" required>
+                        <option value=""></option>
+                        @foreach (var item in ViewBag.tipoFuncionarios)
+                        {
+                            <option value="@item.TipoFuncionarioId">@item.tipo</option>
+                        }
+                    </select>
+                    <span validation-for="tipo" class="text-danger"></span>
+                </div>
+           </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                 <div class="mb-3">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <input asp-for="@telefone" type="number" class="form-control form-control-lg" id="telefone"
+                        name="telefone" required />
+                    <span validation-for="telefone" class="text-danger"></span>
+                </div>
+            </div> 
+            <div class="col">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input asp-for="@email" type="email" class="form-control form-control-lg" id="email" name="email"
+                        placeholder="name@example.com" required />
+                    <span validation-for="email" class="text-danger"></span>
+                </div>
+           </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+               <div class="mb-3">
+                    <label for="servico" class="form-label">Nº de ordem</label>
+                    <input asp-for="@ordem" class="form-control form-control-lg" id="ordem" name="ordem" required />
+                    <span validation-for="servico" class="text-danger"></span>
+                </div>
+            </div> 
+            <div class="col">
+                <div class="mb-3">
+                    <label for="servico" class="form-label">NIF</label>
+                    <input asp-for="@nif" class="form-control form-control-lg" id="nif" name="nif" required />
+                    <span validation-for="servico" class="text-danger"></span>
+                </div>
+           </div>
+        </div>
+        <div class="row" style="float:right;">
+            <div class="mb-3">
+                <input type="submit" value="Editar" class="btn btn-success btn-lg" />
+                <a asp-action="Index" class="btn btn-secondary btn-lg">Voltar</a>
+            </div>
+         </div>  
+         <br><br> 
+    </form>
+</div>

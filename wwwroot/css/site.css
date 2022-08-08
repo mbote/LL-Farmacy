@@ -1,0 +1,77 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.menu{
+    position: relative;
+    /*float: right;*/
+}
+
+#banner{
+    background-image: url("../images/banner1.jpg");
+    background-size: cover;
+    background-blend-mode: multiply;
+    padding-top: 200px;
+    padding-bottom: 560px;
+    margin-top: -16px;
+    margin-bottom: -10px;   
+}
+
+.rodpCopy{
+  text-align: center;
+  font-weight:bold;
+}
+
+#menu{
+  margin-left: 900px;
+  font-weight:bold;
+}
+
+#menu ul li #home-color{
+  color: green;
+}
+
+#headCliente{
+  margin-top: 100px;
+}
+
+
+/* ----------------- MENU ------------ */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* ----------------- MENU ------------ */

@@ -1,0 +1,45 @@
+@model dynamic;
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container" id="linkGen" style="margin-bottom:-70px; margin-top:60px; margin-left:190px">
+    <p style="color:#212529; font-size: 20px;">Listar funcionários</p>
+</div>
+<div class="container-md pt-3" id="headCliente" style="box-shadow: 1px 5px 15px #888888; max-width:1520px;">
+    <p>
+        <A asp-action="Create" class="btn btn-primary">Novo funcionário</a>
+    </p>
+    <table class="table">
+        <thead class="table-light">
+            <th>Nome</th>
+            <th>BI</th>
+            <th>Tipo funcionário</th>
+            <th>Nº da ordem</th>
+            <th>NIF</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th style="width:200px;">Operações</th>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.funcionarios)
+            {
+                <tr>
+                    <td> @item.dados.nome </td>
+                    <td> @item.dados.bi </td>
+                    <td> @item.dados.tipo </td>
+                    <td> @item.dados.numeroOrdem </td>
+                    <td> @item.dados.nif </td>
+                    <td> @item.dados.email </td>
+                    <td> @item.dados.telefone </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.dados.PessoaId" class="btn btn-success">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.dados.PessoaId" class="btn btn-danger">Remover</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>

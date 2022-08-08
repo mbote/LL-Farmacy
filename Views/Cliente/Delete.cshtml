@@ -1,0 +1,54 @@
+@model farmacia.Models.Cliente
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="container" id="linkGen" style="margin-bottom:20px; margin-top:70px;">
+    <p style="color:#212529; font-size: 20px;"><a asp-action="Index"
+            style="text-decoration: none;color:#212529">Cliente/</a>remover</p>
+</div>
+<div class="container pt-3 pb-5" id="headCliente" style="box-shadow: 1px 5px 15px #888888; margin-top:0px">
+    <h5>Desejas remover o cliente?</h5>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.pessoa.nome)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.pessoa.nome)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.pessoa.sexo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.pessoa.sexo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.pessoa.bi)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.pessoa.bi)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.pessoa.telefone)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.pessoa.telefone)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.pessoa.email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.pessoa.email)
+            </dd>
+        </dl>
+        <div class="mb-3" style="float:right;">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="pessoa.PessoaId" />
+                <input type="submit" value="Remover" class="btn btn-danger" /> |
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+            </form>
+        </div>
+    </div>
+</div>
